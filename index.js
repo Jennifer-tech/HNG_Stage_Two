@@ -10,6 +10,9 @@ app.use(express.json())
 
 app.use('/api', router)
 
+app.get('/api', (req, res) => {
+    res.send('App is running')
+})
 mongoose.connect(process.env.MONGODB_URI_offline, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))
     .catch((err) => console.log(err));

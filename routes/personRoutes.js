@@ -7,7 +7,7 @@ const {
 } = require('../schema/personSchema')
 
 router.post('/', validate(createSchema), createPerson)
-router.get('/', getAllPerson)
+router.get('/all', getAllPerson)
 router.get('/:name', getPerson)
 router.patch('/:name', validate(updateSchema), updatePerson)
 router.delete('/:name', deletePerson)
