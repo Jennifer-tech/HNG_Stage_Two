@@ -6,10 +6,10 @@ const {
     updateSchema
 } = require('../schema/personSchema')
 
-router.post('/', validate(createSchema), createPerson)
-router.get('/all', getAllPerson)
 router.get('/:name', getPerson)
 router.patch('/:name', validate(updateSchema), updatePerson)
 router.delete('/:name', deletePerson)
+router.get('/all', getAllPerson)
+router.post('/', validate(createSchema), createPerson)
 
 module.exports = router;
