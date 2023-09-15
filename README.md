@@ -25,32 +25,33 @@ Before you begin, ensure you have met the following requirements:
 ## Instalation
 
 1. Clone the repository:
-    ```git clone https://github.com/Jennifer-tech/HNG_Stage_Two.git```
+> git clone https://github.com/Jennifer-tech/HNG_Stage_Two.git
 2. Change to the project directory:
-    ```cd your-repo```
+> cd your-repo
 3. Install dependencies:
-    ```npm install```
+> npm install
 
 ## Create Environment Variables
 
 - create a .env file in the root directory of your project and add the following environment variables:
 
-```MONGODB_URI_offline= ? your_MONGODB_URI_offline_here```
-```PORT= ? your_desired_port_here```
+> MONGODB_URI_offline=your_MONGODB_URI_offline_here
+
+> PORT= ? your_desired_port_here```
 
 ## API Endpoints
 
-- Create a person: == POST /api/
-- Get details of all persons: == GET /api/
-- Get details of a person by Name: == GET /api/:name
-- Update details of an existing person by Name: == PATCH /api/:name
-- Remove a person by Name: ==DELETE /api/:name
+- Create a person: ```POST /api/create```
+- Get details of all persons: ```GET /api/all```
+- Get details of a person by Name: ```GET /api/:name```
+- Update details of an existing person by Name: ```PATCH /api/:name```
+- Remove a person by Name: ```DELETE /api/:name```
  
 ## Testing
 
 Use Postman or your preferred API testing tool to test the CRUD operations. Below is a sample Postman collection you can import: Postman Collection.
 
-[Render Live]()
+[Render Live](https://muofunanya-hng-stage-two-task.onrender.com)
 
 ## Documentation
 
