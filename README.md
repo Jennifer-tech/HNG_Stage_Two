@@ -42,7 +42,6 @@ Before you begin, ensure you have met the following requirements:
 ## API Endpoints
 
 - Create a person: ```POST /api/create```
-- Get details of all persons: ```GET /api/all```
 - Get details of a person by Name: ```GET /api/:name```
 - Update details of an existing person by Name: ```PATCH /api/:name```
 - Remove a person by Name: ```DELETE /api/:name```

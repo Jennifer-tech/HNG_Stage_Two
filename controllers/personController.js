@@ -23,18 +23,8 @@ exports.getPerson = async (req, res) => {
     const { name: name } = req.params
     try {
         const person = await personModel.findOne({ name });
-        if (!person) res.status(404).json({ success: false, message: "person does not exist" })
-        return res.status(200).json({ success: true, message: person })
-    } catch (err) {
-        res.status(500).json({ success: false, message: err.message })
-    }
-}
-// Read Persons
-exports.getAllPerson = async (req, res) => {
-    try {
-        const person = await personModel.find();
-        if (!person) res.status(404).json({ success: false, message: "person does not exist" })
-        return res.status(200).json({ success: true, message: person })
+        if (!person) return res.status(404).json({ success: false, message: "person does not exist" })
+        res.status(200).json({ success: true, message: person })
     } catch (err) {
         res.status(500).json({ success: false, message: err.message })
     }
@@ -65,7 +55,9 @@ exports.deletePerson = async (req, res) => {
 
     try {
         const person = await personModel.findOneAndDelete({ name })
-        if (!person) res.status(404).json({ message: "Person does not exist" })
+        if (!person) {
+           return res.status(404).json({ message: "Person does not exist" })
+        }
         res.status(500).json({ success: true, message: "Person deleted successfully" })
     } catch (err) {
         res.status(500).json({ success: false, message: err })
