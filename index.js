@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require("mongoose");
 const router = require('./routes/personRoutes')
-const connectDb = require('./utils/connectUtil')
+
 
 require('dotenv').config()
 const app = express()
@@ -22,5 +22,5 @@ mongoose.connect(process.env.MONGODB_URI )
 const port = process.env.PORT || 3002
 app.listen(port, async () => {
     console.log(`Server is running on port ${port}`)
-    // await connectDb();
+    
 })
