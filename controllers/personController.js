@@ -4,7 +4,7 @@ const personModel = require('../models/personModel')
 exports.createPerson = async (req, res) => {
     const personInfo = req.body
     try {
-        const existingEmail = await personModel.findOne({ name: personInfo.name }).maxTimeMS(30000); 
+        const existingEmail = await personModel.findOne({ name: personInfo.name })
 
         if (existingEmail) {
             res.status(409).json({ error: "Person data already exists" })
@@ -20,9 +20,9 @@ exports.createPerson = async (req, res) => {
 
 // Read Persons
 exports.getPerson = async (req, res) => {
-    const { id: _id } = req.params
+    const { name: name } = req.params
     try {
-        const person = await personModel.findById({ _id }); 
+        const person = await personModel.findOne({ name });
         if (!person) return res.status(404).json({ success: false, message: "person does not exist" })
         res.status(200).json({ success: true, message: person })
     } catch (err) {
@@ -46,13 +46,14 @@ exports.getAllPerson = async (req, res) => {
     }
 }
 
+
 // Update Person
 exports.updatePerson = async (req, res) => {
     try {
-        const {id: _id} = req.params
+        const user = { name: req.params.name };
         const personInfo = req.body
 
-        const person = await personModel.findByIdAndUpdate(_id , personInfo, { new: true, maxTimeMS: 30000 });
+        const person = await personModel.findOneAndUpdate(user, personInfo, { new: true });
 
         if (!person) {
             return res.status(404).json({ message: 'Person not found' });
@@ -67,12 +68,12 @@ exports.updatePerson = async (req, res) => {
 
 // Delete person
 exports.deletePerson = async (req, res) => {
-    const {id: _id} = req.params
+    const name = req.params.name
 
     try {
-        const person = await personModel.findByIdAndDelete({_id })
+        const person = await personModel.findOneAndDelete({ name })
         if (!person) {
-            return res.status(404).json({ message: "Person does not exist" })
+           return res.status(404).json({ message: "Person does not exist" })
         }
         res.status(500).json({ success: true, message: "Person deleted successfully" })
     } catch (err) {
