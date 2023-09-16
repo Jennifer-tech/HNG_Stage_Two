@@ -15,7 +15,7 @@ app.get('/api', (req, res) => {
     res.send('App is running')
 })
 
-mongoose.connect("mongodb+srv://Chioma:Omah0708@cluster0.ivj9ivr.mongodb.net/?retryWrites=true&w=majority")
+mongoose.connect(process.env.MONGODB_URI )
     .then(() => console.log('MongoDB connected'))
     .catch((err) => console.log(err));
 
