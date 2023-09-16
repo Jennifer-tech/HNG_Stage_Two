@@ -30,6 +30,22 @@ exports.getPerson = async (req, res) => {
     }
 }
 
+// Read Persons
+exports.getAllPerson = async (req, res) => {
+    let queryStr = JSON.stringify(req.query);
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`)
+    const queryObj = JSON.parse(queryStr)
+    try {
+        const persons = await personModel.find(queryObj);
+        if (persons.length === 0) {
+            return res.status(404).json({ success: false, message: "No persons found" });
+        }
+        res.status(200).json({ success: true, message: persons });
+    } catch (err) {
+        res.status(500).json({ success: false, message: err.message });
+    }
+}
+
 // Update Person
 exports.updatePerson = async (req, res) => {
     try {
@@ -56,7 +72,7 @@ exports.deletePerson = async (req, res) => {
     try {
         const person = await personModel.findOneAndDelete({ name })
         if (!person) {
-           return res.status(404).json({ message: "Person does not exist" })
+            return res.status(404).json({ message: "Person does not exist" })
         }
         res.status(500).json({ success: true, message: "Person deleted successfully" })
     } catch (err) {
