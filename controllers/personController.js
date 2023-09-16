@@ -20,9 +20,9 @@ exports.createPerson = async (req, res) => {
 
 // Read Persons
 exports.getPerson = async (req, res) => {
-    const { name: name } = req.params
+    const { id: _id } = req.params
     try {
-        const person = await personModel.findOne({ name }).maxTimeMS(30000); ;
+        const person = await personModel.findById({ _id }); 
         if (!person) return res.status(404).json({ success: false, message: "person does not exist" })
         res.status(200).json({ success: true, message: person })
     } catch (err) {
@@ -49,10 +49,10 @@ exports.getAllPerson = async (req, res) => {
 // Update Person
 exports.updatePerson = async (req, res) => {
     try {
-        const user = { name: req.params.name };
+        const {id: _id} = req.params
         const personInfo = req.body
 
-        const person = await personModel.findOneAndUpdate(user, personInfo, { new: true, maxTimeMS: 30000 });
+        const person = await personModel.findByIdAndUpdate(_id , personInfo, { new: true, maxTimeMS: 30000 });
 
         if (!person) {
             return res.status(404).json({ message: 'Person not found' });
@@ -67,10 +67,10 @@ exports.updatePerson = async (req, res) => {
 
 // Delete person
 exports.deletePerson = async (req, res) => {
-    const name = req.params.name
+    const {id: _id} = req.params
 
     try {
-        const person = await personModel.findOneAndDelete({ name })
+        const person = await personModel.findByIdAndDelete({_id })
         if (!person) {
             return res.status(404).json({ message: "Person does not exist" })
         }
