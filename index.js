@@ -15,12 +15,12 @@ app.get('/api', (req, res) => {
     res.send('App is running')
 })
 
-// mongoose.connect(process.env.MONGODB_URI_offline)
-//     .then(() => console.log('MongoDB connected'))
-//     .catch((err) => console.log(err));
+mongoose.connect("mongodb+srv://Chioma:Omah0708@cluster0.ivj9ivr.mongodb.net/?retryWrites=true&w=majority")
+    .then(() => console.log('MongoDB connected'))
+    .catch((err) => console.log(err));
 
 const port = process.env.PORT || 3002
 app.listen(port, async () => {
     console.log(`Server is running on port ${port}`)
-    await connectDb();
+    // await connectDb();
 })
