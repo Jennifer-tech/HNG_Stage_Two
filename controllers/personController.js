@@ -4,7 +4,7 @@ const personModel = require('../models/personModel')
 exports.createPerson = async (req, res) => {
     const personInfo = req.body
     try {
-        const existingEmail = await personModel.findOne({ name: personInfo.name })
+        const existingEmail = await personModel.findOne({ name: personInfo.name }).maxTimeMS(30000); 
 
         if (existingEmail) {
             res.status(409).json({ error: "Person data already exists" })
@@ -22,7 +22,7 @@ exports.createPerson = async (req, res) => {
 exports.getPerson = async (req, res) => {
     const { name: name } = req.params
     try {
-        const person = await personModel.findOne({ name });
+        const person = await personModel.findOne({ name }).maxTimeMS(30000); ;
         if (!person) return res.status(404).json({ success: false, message: "person does not exist" })
         res.status(200).json({ success: true, message: person })
     } catch (err) {
@@ -52,7 +52,7 @@ exports.updatePerson = async (req, res) => {
         const user = { name: req.params.name };
         const personInfo = req.body
 
-        const person = await personModel.findOneAndUpdate(user, personInfo, { new: true });
+        const person = await personModel.findOneAndUpdate(user, personInfo, { new: true, maxTimeMS: 30000 });
 
         if (!person) {
             return res.status(404).json({ message: 'Person not found' });
