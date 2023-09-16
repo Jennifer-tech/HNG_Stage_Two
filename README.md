@@ -1,8 +1,8 @@
-## HNG_Stage_Two Backend - Build a simple REST API capable of CRUD Operations on a "people" resource
+## HNG_Stage_Two Backend - Build a simple REST API capable of CRUD Operations on a "person" resource
 
 # NodeJs Express MongoDB CRUD API
 
-This ia a simple REST API capable of CRUD on a "people" resource
+This is a simple REST API capable of CRUD on a "person" resource
 
 ## REQUIREMENTS
 
@@ -22,7 +22,7 @@ Before you begin, ensure you have met the following requirements:
 - MongoDB installed and running.
 - Postman or a similar tool for API testing.
 
-## Instalation
+## Installation
 
 1. Clone the repository:
 > git clone https://github.com/Jennifer-tech/HNG_Stage_Two.git
@@ -41,10 +41,11 @@ Before you begin, ensure you have met the following requirements:
 
 ## API Endpoints
 
-- Create a people: ```POST /api/create```
-- Get details of a people by Name: ```GET /api/:name```
-- Update details of an existing people by Name: ```PATCH /api/:name```
-- Remove a people by Name: ```DELETE /api/:name```
+- Create a person: ```POST /api/create```
+- Get details of all person: ```GET /api/all```
+- Get details of a person by Name: ```GET /api/:name```
+- Update details of an existing person by Name: ```PATCH /api/:name```
+- Remove a person by Name: ```DELETE /api/:name```
  
 ## Testing
 
